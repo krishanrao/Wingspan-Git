@@ -7,6 +7,7 @@ public class Dice {
 	 private String foodstr;
 	 private int pos;
 	 
+	 //Returns a random food item from the food array
 	 String setget()
 	 {
 		 Random rand = new Random(); 	
@@ -15,6 +16,7 @@ public class Dice {
 		   
 		    return foodstr;
 	 }
+
 	
 }
 	 

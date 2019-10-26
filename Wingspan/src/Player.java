@@ -7,12 +7,15 @@ import java.util.Scanner;
 
 public class Player {
 	
+	//each player has a number
 		private int number;
-	    //private Card[] arr;
-	    ArrayList<Card> arr = new ArrayList<Card>();
+		
+   //Array for player's deck of cards
+	    private Card[] arr; 
 	    private int size=3; //max size of array
 	 
 		
+	  //Constructor to set player number
 	     public Player(int num)
 	     {
 	    	 number=num;
@@ -28,7 +31,7 @@ public class Player {
 		 	return number;
 	    	  
 	      }
-		void setCard(ArrayList<Card> ar)
+		void setCard(Card[] ar)
 		{
 			arr = ar;
 		}
@@ -36,6 +39,7 @@ public class Player {
 		{
 			size=s;
 		}
+		//Function iterates through card array and prints card description 
 		void displayCardArray()
 		{
 			for(int i=0; i< size; i++)
@@ -43,20 +47,40 @@ public class Player {
 				arr[i].print();
 			}
 		}
-	     
-//		String getFoodfromDice()
-//		{
-//			
-//			String food = die.getfoodstr();
-//			
-//			return food;
-//			
-//		}
-		
+
+//Die function incorporating each food item to a player	
 		void diefunc()
 		{
 			Dice d= new Dice();
 			System.out.println("Player " +number + " "+ d.setget());
+
 		}
+	//Deletes the last card in the card array
+	    Card[] deleteElement(Card[] arr2)
+	    {
+	            
+	        Card c = new Card();
+	        
+	        for(int i = 0; i < arr2.length; i++)
+	        {
+	            arr2[i] = arr[i];
+	        }
+	      
+	        for(int i=0; i<arr.length; i++)
+	        {
+	        	arr[i]=c;
+	        }
+	        
+	        
+	        for(int i = 0; i < arr2.length; i++)
+	        {
+	            arr[i] = arr2[i];
+	        }
+	  
+	    		
+	        
+	        return arr;
+	    }
+
 	     
 }
