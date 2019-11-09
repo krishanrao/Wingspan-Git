@@ -12,7 +12,7 @@ public class Player {
 	
 		private int number;
 	    ArrayList<Card> arr = new ArrayList<Card>(); // holds player's card
-	    ArrayList<String> foodHeld = new ArrayList<String>(); //food tht the player is holding
+	    ArrayList<String> foodHeld = new ArrayList<String>(); //food tokens that the player is holding
 	    ArrayList<String> rolledFood = new ArrayList<String>(); //food that was rolled in a turn
 	    
 		public String[] foodarr = {"fish", "cherry", "leafLikeSomething", "worm", "food", "moreFood"};
