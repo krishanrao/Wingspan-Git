@@ -13,3 +13,5 @@ In this iteration, we are going to have each player hold 3 cards in the begining
 We also have a functioanlity in the code, which enables the player to gain a food token and get rid of a card from the array of cards that the player was holding.
 
 By 11/13 we aim to be able to complete these actions and move forward with other actions of laying eggs and drawing a bird.
+
+Our schedules didn't allow us to allow a lot of functionality to our game but we plan to get more actions programmed in the next couple of days. 
