@@ -1,4 +1,4 @@
-package wingspan;
+package Wing;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,13 +16,21 @@ public class Player {
 		public String[] foodarr = {"fish", "cherry", "leafLikeSomething", "worm", "food", "moreFood"}; //array holding the food a player has
 		private String foodstr; // a string representing a type of food.
 		private int pos; // position in the food array
-		 
+		public int actionCubes = 8;
+		public int eggsHeld = 10;
 	    //constructor that sets the player number.
 		public Player(int num)
 	    {
 	    	 number=num;
 	    }
-	     
+		public int getEggsHeld()
+		{
+			return eggsHeld;
+		}
+	    public ArrayList<Card> getCardList()
+	    {
+			return arr;	
+	    }
 	    public Player() {
 		
 	    	// TODO Auto-generated constructor stub
