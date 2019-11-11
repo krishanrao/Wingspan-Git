@@ -1,69 +1,50 @@
-package wingspan;
+package Wing;
 
-public class Card {
-	
-	private String birdInfo; //Contains info on bird attributes
-	private int eggCapacity; //Contains the egg capacity 
-	private boolean whenPlayedPower; //True if the card has a when played power
-	private boolean whenActivatedPower; //True if the card has a when activated player.
+import java.util.ArrayList;
+import java.util.Random;
 
-	// Constructor that sets all the card attributes
-	public Card()
+public class Deck {
+	
+	private ArrayList<Card> deck = new ArrayList<Card>(); //deck is just an arraylist of cards
+	//below we initialize 6 cards in which we will later add to our deck.
+	private Card c1 = new Card("Flamingo related information", 3, false, false, "Slug", "G");
+	private Card c2 = new Card("Peacock related information", 2, false, false, "Cherry", "G");
+	private Card c3 = new Card("Vulture related information", 5, false, false, "Leaf", "L");
+	private Card c4 = new Card("Crow related information", 3, false, false, "Slug", "L");
+	private Card c5 = new Card("Pigeon related information", 4, false, false, "Cherry", "D");
+	private Card c6 = new Card("Woodpecker related information", 1, false, false, "Leaf", "D");
+	
+	public Deck() //creates a deck of cards for the player
 	{
-		birdInfo = "";
-		eggCapacity = 0;
-		whenPlayedPower = false ;
-		whenActivatedPower= false;
+		//add a bunch of cards to our deck
+		deck.add(c1);
+		deck.add(c2);
+		deck.add(c3);
+		deck.add(c4);
+		deck.add(c5);
+		deck.add(c6);
+		deck.add(c1);
+		deck.add(c2);
+		deck.add(c3);
+		deck.add(c4);
+		deck.add(c5);
+		deck.add(c6);
+		deck.add(c2);
+		deck.add(c3);
+		deck.add(c4);
+		deck.add(c5);
+		deck.add(c6);
+		deck.add(c1);
 	}
 	
-	public Card(String info, int egg, boolean act, boolean play) //initialize cards using this constructor
+	void drawCard(Player player) //draws a random card from the deck
 	{
-		birdInfo = info;
-		eggCapacity = egg;
-		whenPlayedPower = play;
-		whenActivatedPower= act;
-
+		Random rand = new Random(); 	
+	    int pulled = rand.nextInt(deck.size()); 
+	    if (deck.size() == 0) System.out.println("emptydeck");
+	    player.arr.add(deck.get(pulled));
+	    deck.remove(pulled);
 	}
 	
-	void setegg(int string)
-	{
-		eggCapacity = string;
-	}
 	
-	void setinfo(String info)
-	{
-		birdInfo = info;
-	}
-	
-	int getegg()
-	{
-		return eggCapacity;
-	}
-	 
-	String getcapacity()
-	{
-		String x = "" + eggCapacity;
-		return x;
-	}
-	
-	String getplayed()
-	{
-		return "" + whenPlayedPower;
-	}
-	
-	String getActivated()
-	{
-		return "" + whenActivatedPower;
-	}
-	//print the card info as a string
-	void print()
-	{
-		System.out.println(birdInfo+ " "+ eggCapacity+ " " +whenPlayedPower+ " " + whenActivatedPower);
-	}
-	
-	@Override
-	public String toString() {
-		return (birdInfo+ " "+ eggCapacity+ " " +whenPlayedPower+ " " + whenActivatedPower);		
-	}
-
 }

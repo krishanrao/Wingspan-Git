@@ -1,4 +1,4 @@
-package wingspan;
+package Wing;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,12 +7,12 @@ public class Deck {
 	
 	private ArrayList<Card> deck = new ArrayList<Card>(); //deck is just an arraylist of cards
 	//below we initialize 6 cards in which we will later add to our deck.
-	private Card c1 = new Card("Flamingo related information", 3, false, false);
-	private Card c2 = new Card("Peacock related information", 2, false, false);
-	private Card c3 = new Card("Vulture related information", 5, false, false);
-	private Card c4 = new Card("Crow related information", 3, false, false);
-	private Card c5 = new Card("Pigeon related information", 4, false, false);
-	private Card c6 = new Card("Woodpecker related information", 1, false, false);
+	private Card c1 = new Card("Flamingo related information", 3, "G", false, false);
+	private Card c2 = new Card("Peacock related information", 2, "G", false, false);
+	private Card c3 = new Card("Vulture related information", 5, "L", false, false);
+	private Card c4 = new Card("Crow related information", 3, "L", false, false);
+	private Card c5 = new Card("Pigeon related information", 4, "D", false, false);
+	private Card c6 = new Card("Woodpecker related information", 1, "D", false, false);
 	
 	public Deck() //creates a deck of cards for the player
 	{
