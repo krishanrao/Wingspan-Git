@@ -1,11 +1,14 @@
 package wingspan;
 
+
 public class Space {
 	
-	private int object;//different for diff habitats: die, egg, card
-	private String habitat; //type of habitat
-	private boolean action; //if there is an action for that space, for example trading a card for a die
-	private Card placed; //card that is placed on the space
+	public int object;//different for diff habitats: die, egg, card
+	private String habitat;
+	private boolean action;
+	public Card placed; //card that is placed on the space
+	public boolean ifCube; //if there is a cube on space
+	
 	public boolean ifplaced; //if card on space->true
 	
 	Space()
@@ -14,16 +17,17 @@ public class Space {
 		habitat=" ";
 		action= false;
 		ifplaced=false;
+		ifCube = false;
 	}
-	Space(int o, String h, boolean act,boolean flag)
+	Space(int o, String h, boolean act,boolean flag, boolean flag2)
 	{
 		object=o;
 		habitat=h;
 		action= act;
 		ifplaced= flag;
-			
+		ifCube = flag2;	
 	}
-	
 	
 
 }
+
