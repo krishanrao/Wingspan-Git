@@ -1,4 +1,7 @@
 package connect4;
+package Wing;
+
+
 
 public class GameBoard {
 	
