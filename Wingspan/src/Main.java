@@ -1,4 +1,4 @@
-package Wing;
+package connect4;
 
 import java.util.Scanner;
 
