@@ -4,7 +4,7 @@ package wingspan;
 public class Space {
 	
 	public int object;//different for diff habitats: die, egg, card
-	private String habitat;
+	private String habitat; ..the habitat type
 	private boolean action;
 	public Card placed; //card that is placed on the space
 	public boolean ifCube; //if there is a cube on space
