@@ -1,6 +1,6 @@
 package wingspan;
 
-
+//****************FOR MY REFERENCE : VESION v4.2 WORKS***************************//
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,33 +9,38 @@ public class Main {
 	
 	public static void main(String[] args)
 	{  
-		//create an instance of a player, twice (one for each player)
+		int p1score=0;
+		int p2score=0;
 		Player p1= new Player(1);
 		Player p2= new Player(2);
-		//create instance of gameboard and deck
 		GameBoard g1 = new GameBoard();
+		g1.setboardNum(1);
+		GameBoard g2 = new GameBoard();
+		g2.setboardNum(2);
 		Deck deck = new Deck();
-		//randomly draw cards for our deck. 
+		
+		RoundScore round= new RoundScore(1);
+		
 		deck.drawCard(p1); // draw 3 cards from deck per player
 		deck.drawCard(p1);
 		deck.drawCard(p1);
+		
 		deck.drawCard(p2);
 		deck.drawCard(p2);
 		deck.drawCard(p2);
-		//set up currentPlayer instance. We will toggle back and forth using a simple function once a players turn is over. 
+		
 		Player currentPlayer = p1;
-		//int variable to represent what action the player chooses
+		GameBoard currentBoard = g1;
+		
 		int actionChoice = 0;
-		//The String form of the user choice. 
 		String userAction = null;
-		//Create an instance of a card to represent the card a player will play in "play bird" action
 		Card currentCard;
 		boolean gameNotOver =true; // will be false when game is over
-		//loop until we set gameNotOver to false
 		while(gameNotOver)
 		{
-			//Prompt user for action choice
-			System.out.println("Player " + currentPlayer.getNum() + " What action would you like to perform?");
+			System.out.println("ROUND NUMBER : " + round.getroundNum() ); //round.getroundNum());
+			System.out.println("Player " + currentPlayer.getNum() + " What action would you like to perform on Gameboard "
+								+ currentBoard.getboardNum()+ " ?");
 			System.out.println("1. Play Bird");
 			System.out.println("2. Gain Food");
 			System.out.println("3. Lay Eggs");
@@ -46,35 +51,32 @@ public class Main {
 			actionChoice= sc.nextInt();
 
 			System.out.println("You have chosen option "+ actionChoice);
-			//if they choose to play a bird
+
 			if(actionChoice == 1)
 			{
-				//let them choose a card to place from their hand.
+				
 				System.out.println("pick a card to place");
-				for(int i=0; i<p1.arr.size(); i++)
-					System.out.println(i + ".  " + p1.arr.get(i));
+				for(int i=0; i<currentPlayer.arr.size(); i++)
+					System.out.println(i + ".  " + currentPlayer.arr.get(i));
 				
 				Scanner choice = new Scanner(System.in);
 				int chosenCard = choice.nextInt();
 				
-				userAction = p1.arr.get(chosenCard).getType();
-				//our traversal function will place the card in the left most available spot of the row, based on habitat. 
-				currentCard = g1.traversal(userAction, currentPlayer, chosenCard);
-				System.out.println("***********************");
-				System.out.println(currentCard);
-				System.out.println("***********************");
-				//decrement action cubes after turn
+				userAction = currentPlayer.arr.get(chosenCard).getType();
+				
+				currentCard = currentBoard.traversal(userAction, currentPlayer, chosenCard);
+				
 				currentPlayer.actionCubes--;
 				
-				// account for the food cost
+				
 				String foodCost = currentCard.getFoodCost();
 				System.out.println("FoodCost is "+ foodCost);
 				currentPlayer.foodHeld.remove(foodCost);
-				int eggsLeft = g1.eggSubtraction(currentPlayer);
+				int eggsLeft = currentBoard.eggSubtraction(currentPlayer);
 				
 				currentPlayer.print();
-				//switch players now that turn is over
 				currentPlayer= toggle(currentPlayer, p1, p2);
+				currentBoard= switchfunc(currentBoard, g1, g2);
 /*			
 THIS FEATURE TO BE HANDELED IN THE NEXT ITERATION				
 			if(currentCard.whenPlayedPower == true)
@@ -99,14 +101,15 @@ THIS FEATURE TO BE HANDELED IN THE NEXT ITERATION
 //				
 //				Scanner choice = new Scanner(System.in);
 //				int chosenCard = choice.nextInt();
-//				
+				
 				userAction = "G";
-				int dieNum = g1.traversalVoid(userAction, currentPlayer);
+				int dieNum = currentBoard.traversalVoid(userAction, currentPlayer);
 				System.out.println("Dienum " +dieNum);// Not sure what output to expect??
 				currentPlayer.takeDice(dieNum);
 				currentPlayer.actionCubes--; //Check If NEEDED
 				currentPlayer.print();
 				currentPlayer= toggle(currentPlayer, p1, p2);
+				currentBoard= switchfunc(currentBoard, g1, g2);
 				
 			}
 			if(actionChoice ==3)
@@ -123,16 +126,59 @@ THIS FEATURE TO BE HANDELED IN THE NEXT ITERATION
 				gameNotOver =false;
 			}
 			
+			//Checking if both players action cubes are 0
+			if(actionChoice !=5 && (p1.actionCubes ==0  && p2.actionCubes==0))
+			{
+				System.out.println("ROUND OVER! ");
+				//checking food held by each player
+				int size1 = p1.foodHeld.size();
+				int size2=  p2.foodHeld.size();
+				if(size1 > size2 )
+				{
+					System.out.println("Player 1 wins this round");
+					p1score++;
+				}
+				else if(size1 < size2 )
+				{
+					System.out.println("Player 2 wins this round");
+					p2score++;
+				}
+				else
+				{
+					System.out.println("It's a Tie in this round, both players gain a point! ");
+					p1score++;
+					p2score++;
+				}
+					
+				round.updateroundNum();
+				
+			}
+			
 					
 			
 		}
 		
 		System.out.println("Game Over! ");
 		
-		System.out.println("------Player1's Cards------");
-		p1.displayCardArray();
-		System.out.println("------Player2's Cards------");
-		p2.displayCardArray();			
+		
+//		System.out.println("------Player1's Cards------");
+//		p1.displayCardArray();
+//		System.out.println("------Player2's Cards------");
+//		p2.displayCardArray();			
+		System.out.println("P1 score: "+ p1score);
+		System.out.println("P2 score: "+ p2score);
+		if(p1score> p2score)
+		{
+			System.out.println("P1 wins !!");
+		}
+		else if(p1score < p2score)
+		{
+			System.out.println("P2 wins !!");
+		}
+		else 
+		{
+			System.out.println("It's a Tie !!");
+		}
 			
 		
 	}
@@ -147,4 +193,16 @@ public static Player toggle(Player Person, Player person1, Player person2) {
 	}
 	
 	}
+
+public static GameBoard switchfunc(GameBoard board, GameBoard board1, GameBoard board2) { 
+	
+	if (board1.getboardNum() == board.getboardNum()) {
+		return board2;
+	} 
+	else {
+	return board1;
 }
+
+}
+}
+
