@@ -8,7 +8,7 @@ public class Deck {
 	
 	private ArrayList<Card> deck = new ArrayList<Card>(); //deck is just an arraylist of cards
 	//below we initialize 6 cards in which we will later add to our deck.
-	private Card c1 = new Card("Flamingo related information", 3, false, false, "rodent", "G");
+	private Card c1 = new Card("Flamingo related information", 3, false, false, "rodent", "G");      //these are all the possible cardswe can choose and add to the deck.
 	private Card c2 = new Card("Peacock related information", 2, false, false, "fruit", "G");
 	private Card c3 = new Card("Vulture related information", 5, false, false, "invertibrate", "L");
 	private Card c4 = new Card("Crow related information", 3, false, false, "seed", "L");
