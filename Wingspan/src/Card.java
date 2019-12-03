@@ -1,6 +1,7 @@
 package wingspan;
 
 
+
 public class Card {
 	
 	private String birdInfo; //Contains info on bird attributes
