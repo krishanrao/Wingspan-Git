@@ -1,10 +1,11 @@
+
 package wingspan;
 
 import java.util.ArrayList;
 
 public class GameBoard {
 	
-	
+	private int boardNum;
 	private int rows=3;
 	private int cols=5;
 	private int eggCost= 0;
@@ -28,7 +29,7 @@ public class GameBoard {
 	
 	Space object5 = new Space(3, "Forest", false,false,false); 
 	board[0][4]= object5;
-	//-------
+	//-----------------
 	Space object6 = new Space(1, "Grasslands", false,false,false); 
 	board[1][0]= object6;
 		
@@ -43,7 +44,7 @@ public class GameBoard {
 	
 	Space object10 = new Space(4, "Grasslands", false,false,false); 
 	board[1][4]= object10;
-	//-------
+	//------------------
 
 	Space object11 = new Space(1, "Wetlands", false,false,false); 
 	board[2][0]= object11;
@@ -60,6 +61,14 @@ public class GameBoard {
 	Space object15 = new Space(3, "Wetlands", false,false,false); 
 	board[2][4]= object15;
 	
+	}
+	public void setboardNum(int n)
+	{
+		boardNum=n;
+	}
+	public int getboardNum()
+	{
+		return boardNum;
 	}
 	public int traversalVoid(String userAction,Player p) // this is used if a person choses to play the gain food action
 	{
@@ -82,7 +91,7 @@ public class GameBoard {
 			row=2;
 			
 		}
-		//determining the col num by finding the left most available spot
+		//determining the column number by finding the left most available spot
 		for(int j=0; j<cols;j++)
 		{
 			if(board[row][j].ifplaced == false)
@@ -139,7 +148,7 @@ public class GameBoard {
 			row=2;
 			
 		}
-		//determining the col num by finding the left most available spot
+		//determining the column number by finding the left most available spot
 		for(int j=0; j<cols;j++)
 		{
 			if(board[row][j].ifplaced == false) //finding the left most available spot
