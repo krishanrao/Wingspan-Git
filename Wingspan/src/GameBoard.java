@@ -1,5 +1,4 @@
 package connect4;
-package Wing;
 
 
 
