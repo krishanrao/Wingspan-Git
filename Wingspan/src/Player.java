@@ -146,7 +146,7 @@ public class Player {
 		{
 			System.out.println("Player " +number + " "+ foodHeld);
 		}
-	    //returns the correct element in the arraylist based on the int (element number) passed in.
+	    //returns the correct element in the array list based on the integer (element number) passed in.
 		Card getPlayerCard(int num)
 		{
 			
